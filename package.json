@@ -1,0 +1,11 @@
+{
+  "name": "widget-nan-deployment",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd widget && npm run build",
+    "dev": "cd widget && npm run dev"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

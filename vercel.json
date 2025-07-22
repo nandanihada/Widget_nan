@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "widget/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "widget/dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/widget/dist/$1"
+    }
+  ]
+}

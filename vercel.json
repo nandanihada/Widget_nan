@@ -1,14 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "widget/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "widget/dist"
-      }
-    }
-  ],
+  "buildCommand": "cd widget && npm run build",
+  "outputDirectory": "widget/dist",
   "routes": [
     {
       "src": "/api/(.*)",

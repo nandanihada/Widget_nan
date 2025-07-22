@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Widget - Development</title>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <!-- Example usage for testing -->
+    <div style="margin: 20px; padding: 20px; border: 1px solid #ccc;">
+        <h3>Widget Integration Test</h3>
+        <div id="widget-container" data-project-id="test-project-123"></div>
+    </div>
+
+    <script>
+        // Development test script
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.DynamicWidget) {
+                window.DynamicWidget.init();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,8 +1,16 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document, CallbackError } from 'mongoose';
 import bcrypt from 'bcryptjs';
-import { User as IUser } from '../../../shared/types';
 
-export interface UserDocument extends IUser, Document {
+export interface IUser {
+  email: string;
+  password?: string;
+  name: string;
+  projects: string[];
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface UserDocument extends Omit<IUser, '_id'>, Document {
   comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
@@ -41,7 +49,7 @@ UserSchema.pre<UserDocument>('save', async function(next) {
     this.password = await bcrypt.hash(this.password!, salt);
     next();
   } catch (error) {
-    next(error);
+    next(error as CallbackError);
   }
 });
 

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Project from '../models/Project';
 import WidgetResponse from '../models/WidgetResponse';
-import { ApiResponse, CreateProjectRequest, UpdateProjectRequest } from '../../../shared/types';
+import { ApiResponse, CreateProjectRequest, UpdateProjectRequest } from '../types';
 import { AuthRequest } from '../middleware/auth';
 
 export const getProject = async (req: AuthRequest, res: Response) => {

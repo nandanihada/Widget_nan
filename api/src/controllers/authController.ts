@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
-import { LoginRequest, RegisterRequest, ApiResponse, AuthTokenPayload } from '../../../shared/types';
+import { LoginRequest, RegisterRequest, ApiResponse, AuthTokenPayload } from '../types';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -28,7 +28,7 @@ export const register = async (req: Request, res: Response) => {
 
     // Generate JWT token
     const tokenPayload: Omit<AuthTokenPayload, 'iat' | 'exp'> = {
-      userId: user._id.toString(),
+      userId: (user._id as any).toString(),
       email: user.email
     };
 
@@ -78,7 +78,7 @@ export const login = async (req: Request, res: Response) => {
 
     // Generate JWT token
     const tokenPayload: Omit<AuthTokenPayload, 'iat' | 'exp'> = {
-      userId: user._id.toString(),
+      userId: (user._id as any).toString(),
       email: user.email
     };
 

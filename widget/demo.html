@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Embedding Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .demo-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .demo-title {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎯 Dynamic Widget - Third Party Integration Demo</h1>
+    
+    <div class="demo-section">
+        <h2 class="demo-title">Basic Widget</h2>
+        <p>This shows how a third party would embed your widget:</p>
+        <div id="widget-1" data-project-id="demo-project-1"></div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">Custom API URL Widget</h2>
+        <p>Widget with custom API endpoint:</p>
+        <div id="widget-2" data-project-id="custom-project-2" data-api-url="https://your-api.com/api"></div>
+    </div>
+
+    <div class="demo-section">
+        <h2 class="demo-title">Multiple Widgets on Same Page</h2>
+        <p>Different widgets with different project IDs:</p>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <h4>Survey 1</h4>
+                <div id="widget-3" data-project-id="survey-1"></div>
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <h4>Survey 2</h4>
+                <div id="widget-4" data-project-id="survey-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- This is what third parties need to add -->
+    <script src="./dist/widget.js"></script>
+    
+    <!-- Optional: Manual initialization (if needed) -->
+    <script>
+        // This is optional - the widget auto-initializes
+        // But you can also manually initialize if needed
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Widget initialized!');
+        });
+    </script>
+</body>
+</html>

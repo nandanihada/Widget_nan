@@ -1,7 +1,45 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { Project as IProject, Question, ProjectSettings } from '../../../shared/types';
 
-export interface ProjectDocument extends IProject, Document {}
+export interface IQuestion {
+  id: string;
+  text: string;
+  type: 'multiple-choice' | 'text' | 'rating' | 'boolean';
+  options?: string[];
+  required: boolean;
+  order: number;
+}
+
+export interface IProjectSettings {
+  theme: {
+    primaryColor: string;
+    secondaryColor: string;
+    backgroundColor: string;
+    textColor: string;
+    borderRadius: string;
+  };
+  branding: {
+    showPoweredBy: boolean;
+    customLogo?: string;
+  };
+  behavior: {
+    autoSubmit: boolean;
+    showProgressBar: boolean;
+    allowBack: boolean;
+  };
+}
+
+export interface IProject {
+  projectId: string;
+  name: string;
+  description?: string;
+  userId: string;
+  questions: IQuestion[];
+  settings: IProjectSettings;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface ProjectDocument extends Omit<IProject, '_id'>, Document {}
 
 const QuestionSchema = new Schema({
   id: {

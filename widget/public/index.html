@@ -4,23 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Widget - Development</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>
 <body>
     <div id="root"></div>
     
     <!-- Example usage for testing -->
-    <div style="margin: 20px; padding: 20px; border: 1px solid #ccc;">
-        <h3>Widget Integration Test</h3>
-        <div id="widget-container" data-project-id="test-project-123"></div>
+    <div style="margin: 20px; padding: 20px; border: 2px solid #007bff; background: #f8f9fa;">
+        <h2 style="color: #007bff;">🎯 Widget Integration Test</h2>
+        <p style="color: #666;">Testing project ID: <strong>test-project-123</strong></p>
+        <div id="widget-container" data-project-id="test-project-123" style="border: 1px dashed #ccc; min-height: 100px; padding: 10px;"></div>
+        <div id="debug-info" style="margin-top: 20px; padding: 10px; background: #e9ecef; font-family: monospace; font-size: 12px;"></div>
     </div>
 
     <script>
-        // Development test script
+        // Development test script with debugging
+        const debugInfo = document.getElementById('debug-info');
+        
+        function log(message) {
+            console.log(message);
+            if (debugInfo) {
+                debugInfo.innerHTML += new Date().toLocaleTimeString() + ': ' + message + '<br>';
+            }
+        }
+        
+        log('Page loaded, waiting for DynamicWidget...');
+        
         window.addEventListener('DOMContentLoaded', () => {
+            log('DOM loaded');
             if (window.DynamicWidget) {
+                log('DynamicWidget found, initializing...');
                 window.DynamicWidget.init();
+            } else {
+                log('DynamicWidget not found!');
             }
         });
+        
+        // Check again after a delay
+        setTimeout(() => {
+            if (!window.DynamicWidget) {
+                log('Still no DynamicWidget after 2 seconds');
+            }
+        }, 2000);
     </script>
 </body>
 </html>

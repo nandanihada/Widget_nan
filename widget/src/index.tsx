@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import Widget from './components/Widget';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Widget initialization function
 const initWidget = () => {
@@ -16,10 +17,12 @@ const initWidget = () => {
         // Create React root and render widget
         const root = createRoot(container);
         root.render(
-          <Widget 
-            projectId={projectId} 
-            apiUrl={apiUrl}
-          />
+          <ErrorBoundary>
+            <Widget 
+              projectId={projectId} 
+              apiUrl={apiUrl}
+            />
+          </ErrorBoundary>
         );
       }
     }
@@ -48,6 +51,11 @@ declare global {
 
 if (typeof window !== 'undefined') {
   window.DynamicWidget = DynamicWidget;
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.DynamicWidget) {
+      window.DynamicWidget.init();
+    }
+  });
 }
 
 export default DynamicWidget;

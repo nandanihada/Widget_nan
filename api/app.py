@@ -21,10 +21,10 @@ try:
 except ImportError:
     print("python-dotenv not installed. Using default environment variables.")
 
+# Get the base URL from environment or use Render URL
+BASE_URL = os.getenv("BASE_URL", "https://your-app-name.onrender.com")
 if os.getenv("FLASK_ENV") == "development":
     BASE_URL = "http://127.0.0.1:5000"
-else:
-    BASE_URL = "https://pepper-flask-app.onrender.com"
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
@@ -1024,4 +1024,5 @@ def edit_survey(survey_id):
 
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)

@@ -18,7 +18,7 @@ interface WidgetState {
 
 const Widget: React.FC<WidgetProps> = ({ 
   projectId, 
-  apiUrl = 'http://localhost:3002/api' 
+  apiUrl = 'https://widget-11.onrender.com//api' 
 }) => {
   const [state, setState] = useState<WidgetState>({
     project: null,
